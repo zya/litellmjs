@@ -1,0 +1,26 @@
+name: 'Run tests & linting'
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+permissions:
+  contents: read
+  pull-requests: read
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Test
+        run: npm t
