@@ -10,7 +10,7 @@ concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
 jobs:
-  check-links:
+  test-and-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +20,5 @@ jobs:
         with:
           node-version: 18.x.x
           cache: npm
-      - name: Install
+      - name: Install & Test
         run: npm ci
-      - name: Test
-        run: npm t
