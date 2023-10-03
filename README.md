@@ -2,7 +2,7 @@
   🚅 LiteLLM.js
 </h1>
 <p align="center">
-    <p align="center">JavaScript implementation of LiteLLM. Work in progress 🚧 🚧 🚧 </p>
+    <p align="center">JavaScript implementation of <a href="https://github.com/BerriAI/litellm">LiteLLM</a>. Work in progress 🚧 🚧 🚧 </p>
 </p>
 
 # Usage
@@ -32,7 +32,7 @@ for await (const part of stream) {
 }
 ```
 # Features
-We aim to support all features that LiteLLM python package supports.
+We aim to support all features that [LiteLLM python package](https://github.com/BerriAI/litellm) supports.
 
 * Standardised completion 🚧
 * Caching ❌
