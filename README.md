@@ -59,5 +59,5 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [nlp_cloud](https://docs.litellm.ai/docs/providers/nlp_cloud)  | ❌ | ❌ |
 | [aleph alpha](https://docs.litellm.ai/docs/providers/aleph_alpha)  | ❌ | ❌ |
 | [petals](https://docs.litellm.ai/docs/providers/petals)  | ❌ | ❌ |
-| [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ❌ | ❌ |
+| [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ |
 | [deepinfra](https://docs.litellm.ai/docs/providers/deepinfra)  | ❌ | ❌ |

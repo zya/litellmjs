@@ -1,3 +1,4 @@
+import { OllamaHandler } from './handlers/ollama';
 import { OpenAIHandler } from './handlers/openai';
 import { Handler, HandlerParams, ModelName, Result } from './types';
 
@@ -13,6 +14,17 @@ const MODEL_HANDLER_MAPPINGS: Record<ModelName, Handler> = {
   'gpt-4-32k': OpenAIHandler,
   'gpt-4-32k-0314': OpenAIHandler,
   'gpt-4-32k-0613': OpenAIHandler,
+  'ollama/llama2': OllamaHandler,
+  'ollama/llama2:13b': OllamaHandler,
+  'ollama/llama2:70b': OllamaHandler,
+  'ollama/llama2-uncensored': OllamaHandler,
+  'ollama/orca-mini': OllamaHandler,
+  'ollama/vicuna': OllamaHandler,
+  'ollama/nous-hermes': OllamaHandler,
+  'ollama/nous-hermes:13b': OllamaHandler,
+  'ollama/wizard-vicuna': OllamaHandler,
+  'ollama/codellama': OllamaHandler,
+  'ollama/codellama:7b-instruct': OllamaHandler,
 };
 
 export async function completion(params: HandlerParams): Promise<Result> {
