@@ -1,3 +1,4 @@
+import { AnthropicHandler } from './handlers/anthropic';
 import { OllamaHandler } from './handlers/ollama';
 import { OpenAIHandler } from './handlers/openai';
 import { Handler, HandlerParams, ModelName, Result } from './types';
@@ -25,6 +26,7 @@ const MODEL_HANDLER_MAPPINGS: Record<ModelName, Handler> = {
   'ollama/wizard-vicuna': OllamaHandler,
   'ollama/codellama': OllamaHandler,
   'ollama/codellama:7b-instruct': OllamaHandler,
+  'claude-2': AnthropicHandler,
 };
 
 export async function completion(params: HandlerParams): Promise<Result> {

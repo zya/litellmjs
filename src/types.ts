@@ -41,7 +41,8 @@ export type ModelName =
   | 'ollama/nous-hermes:13b'
   | 'ollama/wizard-vicuna'
   | 'ollama/codellama'
-  | 'ollama/codellama:7b-instruct';
+  | 'ollama/codellama:7b-instruct'
+  | 'claude-2';
 
 export interface HandlerParamsBase {
   model: ModelName;

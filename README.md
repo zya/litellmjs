@@ -43,7 +43,7 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | ------------- | ------------- | ------------- | 
 | [openai](https://docs.litellm.ai/docs/providers/openai)  | ✅ | ✅  |
 | [cohere](https://docs.litellm.ai/docs/providers/cohere)  | ❌ | ❌ |
-| [anthropic](https://docs.litellm.ai/docs/providers/anthropic)  | ❌ | ❌ |
+| [anthropic](https://docs.litellm.ai/docs/providers/anthropic)  | ✅ | ✅ |
 | [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ❌ | ❌ |
 | [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ |
 | [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ |
