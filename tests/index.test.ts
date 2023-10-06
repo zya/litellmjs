@@ -24,7 +24,7 @@ jest.mock('@anthropic-ai/sdk', () => {
 
 import Anthropic from '@anthropic-ai/sdk';
 import { completion } from '../src';
-import { HandlerParams, ModelName, ResultNotStreaming } from '../src/types';
+import { HandlerParams, ResultNotStreaming } from '../src/types';
 
 describe('litellm', () => {
   describe('openai', () => {
@@ -34,7 +34,7 @@ describe('litellm', () => {
     ])(
       'support using openai chat models with and without streaming',
       async ({ model, stream }) => {
-        const params = { model: model as ModelName, messages: [], stream };
+        const params = { model: model, messages: [], stream };
         await completion(params);
         expect(mockCreate).toHaveBeenCalledWith(params);
       },
