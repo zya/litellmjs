@@ -1,4 +1,5 @@
 import { AnthropicHandler } from './handlers/anthropic';
+import { CohereHandler } from './handlers/cohere';
 import { OllamaHandler } from './handlers/ollama';
 import { OpenAIHandler } from './handlers/openai';
 import { Handler, HandlerParams, ModelName, Result } from './types';
@@ -27,6 +28,10 @@ const MODEL_HANDLER_MAPPINGS: Record<ModelName, Handler> = {
   'ollama/codellama': OllamaHandler,
   'ollama/codellama:7b-instruct': OllamaHandler,
   'claude-2': AnthropicHandler,
+  command: CohereHandler,
+  'command-nightly': CohereHandler,
+  'command-light': CohereHandler,
+  'command-light-nightly': CohereHandler,
 };
 
 export async function completion(params: HandlerParams): Promise<Result> {

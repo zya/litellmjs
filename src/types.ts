@@ -42,7 +42,11 @@ export type ModelName =
   | 'ollama/wizard-vicuna'
   | 'ollama/codellama'
   | 'ollama/codellama:7b-instruct'
-  | 'claude-2';
+  | 'claude-2'
+  | 'command'
+  | 'command-nightly'
+  | 'command-light'
+  | 'command-light-nightly';
 
 export interface HandlerParamsBase {
   model: ModelName;
