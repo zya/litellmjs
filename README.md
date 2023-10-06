@@ -44,6 +44,7 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [openai](https://docs.litellm.ai/docs/providers/openai)  | ✅ | ✅  |
 | [cohere](https://docs.litellm.ai/docs/providers/cohere)  | ✅  | ✅  |
 | [anthropic](https://docs.litellm.ai/docs/providers/anthropic)  | ✅ | ✅ |
+| [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ |
 | [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ❌ | ❌ |
 | [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ |
 | [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ |
@@ -59,5 +60,4 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [nlp_cloud](https://docs.litellm.ai/docs/providers/nlp_cloud)  | ❌ | ❌ |
 | [aleph alpha](https://docs.litellm.ai/docs/providers/aleph_alpha)  | ❌ | ❌ |
 | [petals](https://docs.litellm.ai/docs/providers/petals)  | ❌ | ❌ |
-| [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ |
 | [deepinfra](https://docs.litellm.ai/docs/providers/deepinfra)  | ❌ | ❌ |
