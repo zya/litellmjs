@@ -2,11 +2,11 @@ import {
   HandlerParams,
   HandlerParamsNotStreaming,
   HandlerParamsStreaming,
-  Message,
   ResultNotStreaming,
   ResultStreaming,
   StreamingChunk,
 } from '../types';
+import { combinePrompts } from '../utils/combinePrompts';
 
 interface OllamaResponseChunk {
   model: string;
@@ -60,13 +60,6 @@ async function* iterateResponse(
   }
 }
 
-function combineMessagesToPromit(messages: Message[]): string {
-  return messages.reduce((acc: string, message: Message) => {
-    // TODO: Distinguish between the different role types
-    return (acc += message.content);
-  }, '');
-}
-
 async function getOllamaResponse(
   model: string,
   prompt: string,
@@ -102,7 +95,7 @@ export async function OllamaHandler(
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'http://127.0.0.1:11434';
   const model = params.model.split('ollama/')[1];
-  const prompt = combineMessagesToPromit(params.messages);
+  const prompt = combinePrompts(params.messages);
 
   const res = await getOllamaResponse(model, prompt, baseUrl);
 

@@ -9,6 +9,7 @@ import {
   StreamingChunk,
 } from '../types';
 import { cohereResponse, generateResponse } from 'cohere-ai/dist/models';
+import { combinePrompts } from '../utils/combinePrompts';
 
 // eslint-disable-next-line @typescript-eslint/require-await
 async function* toStream(
@@ -44,9 +45,7 @@ export async function CohereHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   cohere.init(process.env.COHERE_API_KEY!);
-  const textsCombined = params.messages.reduce((acc, message) => {
-    return (acc += message.content);
-  }, '');
+  const textsCombined = combinePrompts(params.messages);
 
   const config = {
     model: params.model,

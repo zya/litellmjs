@@ -10,11 +10,10 @@ import {
   StreamingChunk,
   Message,
 } from '../types';
+import { combinePrompts } from '../utils/combinePrompts';
 
 function toAnthropicPrompt(messages: Message[]): string {
-  const textsCombined = messages.reduce((acc, message) => {
-    return (acc += message.content);
-  }, '');
+  const textsCombined = combinePrompts(messages);
   return `${Anthropic.HUMAN_PROMPT} ${textsCombined}${Anthropic.AI_PROMPT}`;
 }
 
