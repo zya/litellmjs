@@ -16,11 +16,11 @@ async function* toStream(
   response: cohereResponse<generateResponse>,
 ): AsyncIterable<StreamingChunk> {
   yield {
-    id: '',
     choices: [
       {
         delta: {
           content: response.body.generations[0].text,
+          role: 'assistant',
         },
         finish_reason: 'stop',
         index: 0,
@@ -61,7 +61,6 @@ export async function CohereHandler(
   }
 
   return {
-    id: '',
     choices: [
       {
         message: {

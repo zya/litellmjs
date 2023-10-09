@@ -21,7 +21,6 @@ function toResponse(
   anthropicResponse: Anthropic.Completion,
 ): ResultNotStreaming {
   return {
-    id: '',
     choices: [
       {
         message: {
@@ -39,10 +38,9 @@ function toStreamingChunk(
   anthropicResponse: Anthropic.Completion,
 ): StreamingChunk {
   return {
-    id: '',
     choices: [
       {
-        delta: { content: anthropicResponse.completion },
+        delta: { content: anthropicResponse.completion, role: 'assistant' },
         finish_reason: 'stop',
         index: 0,
       },

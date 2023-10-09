@@ -1,19 +1,40 @@
-import OpenAI from 'openai';
-
 export interface Message {
   role: 'system' | 'user' | 'assistant' | 'function';
   content: string | null;
 }
 
-export type ResultNotStreaming = Pick<
-  OpenAI.Chat.ChatCompletion,
-  'choices' | 'id'
->;
+export interface ConsistentResponseChoice {
+  finish_reason: string;
+  index: number;
+  message: {
+    role: string;
+    content: string;
+  };
+}
 
-export type StreamingChunk = Pick<
-  OpenAI.Chat.ChatCompletionChunk,
-  'choices' | 'id'
->;
+export interface ConsistentResponseStreamingChoice
+  extends Omit<ConsistentResponseChoice, 'message'> {
+  delta: ConsistentResponseChoice['message'];
+}
+
+export interface ConsistentResponseUsage {
+  prompt_tokens: number;
+  completion_tokesn: number;
+  total_tokens: number;
+}
+
+export interface ConsistentResponse {
+  choices: ConsistentResponseChoice[];
+  model?: string; // TODO: Make this non-optional
+  created?: string; // TODO: Make this non-optional and implement
+  usage?: ConsistentResponseUsage; // TODO: Make this non-optional and implement
+}
+
+export type ResultNotStreaming = ConsistentResponse;
+
+export interface StreamingChunk extends Omit<ConsistentResponse, 'choices'> {
+  choices: ConsistentResponseStreamingChoice[];
+}
 
 export type ResultStreaming = AsyncIterable<StreamingChunk>;
 

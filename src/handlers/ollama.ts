@@ -17,10 +17,9 @@ interface OllamaResponseChunk {
 
 function toStreamingChunk(ollamaResponse: OllamaResponseChunk): StreamingChunk {
   return {
-    id: '',
     choices: [
       {
-        delta: { content: ollamaResponse.response },
+        delta: { content: ollamaResponse.response, role: 'assistant' },
         finish_reason: 'stop',
         index: 0,
       },
@@ -37,7 +36,6 @@ function toResponse(content: string): ResultNotStreaming {
         index: 0,
       },
     ],
-    id: '',
   };
 }
 

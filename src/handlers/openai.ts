@@ -24,5 +24,7 @@ export async function OpenAIHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const openai = new OpenAI();
-  return openai.chat.completions.create(params);
+  return openai.chat.completions.create(params) as Promise<
+    ResultNotStreaming | ResultStreaming
+  >; // TODO: Undo the type casting by properly handling and converting to consistent response
 }
