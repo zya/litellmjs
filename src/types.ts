@@ -25,9 +25,9 @@ export interface ConsistentResponseUsage {
 
 export interface ConsistentResponse {
   choices: ConsistentResponseChoice[];
-  model?: string; // TODO: Make this non-optional
-  created?: number; // TODO: Make this non-optional and implement
-  usage?: ConsistentResponseUsage; // TODO: Make this non-optional and implement
+  model?: string;
+  created?: number;
+  usage?: ConsistentResponseUsage;
 }
 
 export type ResultNotStreaming = ConsistentResponse;
