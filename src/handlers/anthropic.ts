@@ -21,6 +21,7 @@ function toResponse(
   anthropicResponse: Anthropic.Completion,
 ): ResultNotStreaming {
   return {
+    model: anthropicResponse.model,
     choices: [
       {
         message: {
@@ -38,6 +39,7 @@ function toStreamingChunk(
   anthropicResponse: Anthropic.Completion,
 ): StreamingChunk {
   return {
+    model: anthropicResponse.model,
     choices: [
       {
         delta: { content: anthropicResponse.completion, role: 'assistant' },

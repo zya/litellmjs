@@ -15,8 +15,12 @@ interface OllamaResponseChunk {
   done: boolean;
 }
 
-function toStreamingChunk(ollamaResponse: OllamaResponseChunk): StreamingChunk {
+function toStreamingChunk(
+  ollamaResponse: OllamaResponseChunk,
+  model: string,
+): StreamingChunk {
   return {
+    model: model,
     choices: [
       {
         delta: { content: ollamaResponse.response, role: 'assistant' },
@@ -27,8 +31,9 @@ function toStreamingChunk(ollamaResponse: OllamaResponseChunk): StreamingChunk {
   };
 }
 
-function toResponse(content: string): ResultNotStreaming {
+function toResponse(content: string, model: string): ResultNotStreaming {
   return {
+    model: model,
     choices: [
       {
         message: { content, role: 'assistant' },
@@ -41,6 +46,7 @@ function toResponse(content: string): ResultNotStreaming {
 
 async function* iterateResponse(
   response: Response,
+  model: string,
 ): AsyncIterable<StreamingChunk> {
   const reader = response.body?.getReader();
   let done = false;
@@ -51,7 +57,7 @@ async function* iterateResponse(
       const decoded = new TextDecoder().decode(next.value);
       done = next.done;
       const ollamaResponse = JSON.parse(decoded) as OllamaResponseChunk;
-      yield toStreamingChunk(ollamaResponse);
+      yield toStreamingChunk(ollamaResponse, model);
     } else {
       done = true;
     }
@@ -98,12 +104,12 @@ export async function OllamaHandler(
   const res = await getOllamaResponse(model, prompt, baseUrl);
 
   if (params.stream) {
-    return iterateResponse(res);
+    return iterateResponse(res, model);
   }
 
   const chunks: StreamingChunk[] = [];
 
-  for await (const chunk of iterateResponse(res)) {
+  for await (const chunk of iterateResponse(res, model)) {
     chunks.push(chunk);
   }
 
@@ -111,5 +117,5 @@ export async function OllamaHandler(
     return (acc += chunk.choices[0].delta.content);
   }, '');
 
-  return toResponse(message);
+  return toResponse(message, model);
 }

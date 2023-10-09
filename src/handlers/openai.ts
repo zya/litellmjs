@@ -13,6 +13,8 @@ async function* toStreamingResponse(
 ): ResultStreaming {
   for await (const chunk of response) {
     yield {
+      model: chunk.model,
+      created: chunk.created,
       choices: chunk.choices.map((openAIChoice) => {
         return {
           delta: {

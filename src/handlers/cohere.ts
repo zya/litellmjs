@@ -14,8 +14,10 @@ import { combinePrompts } from '../utils/combinePrompts';
 // eslint-disable-next-line @typescript-eslint/require-await
 async function* toStream(
   response: cohereResponse<generateResponse>,
+  model: string,
 ): AsyncIterable<StreamingChunk> {
   yield {
+    model: model,
     choices: [
       {
         delta: {
@@ -57,10 +59,11 @@ export async function CohereHandler(
   const response = await cohere.generate(config);
 
   if (params.stream) {
-    return toStream(response);
+    return toStream(response, params.model);
   }
 
   return {
+    model: params.model,
     choices: [
       {
         message: {
