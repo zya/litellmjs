@@ -4,11 +4,11 @@ export interface Message {
 }
 
 export interface ConsistentResponseChoice {
-  finish_reason: string;
+  finish_reason: 'stop' | 'length' | 'function_call' | 'content_filter' | null;
   index: number;
   message: {
-    role: string;
-    content: string;
+    role: string | null | undefined;
+    content: string | null | undefined;
   };
 }
 
@@ -19,14 +19,14 @@ export interface ConsistentResponseStreamingChoice
 
 export interface ConsistentResponseUsage {
   prompt_tokens: number;
-  completion_tokesn: number;
+  completion_tokens: number;
   total_tokens: number;
 }
 
 export interface ConsistentResponse {
   choices: ConsistentResponseChoice[];
   model?: string; // TODO: Make this non-optional
-  created?: string; // TODO: Make this non-optional and implement
+  created?: number; // TODO: Make this non-optional and implement
   usage?: ConsistentResponseUsage; // TODO: Make this non-optional and implement
 }
 

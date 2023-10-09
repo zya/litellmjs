@@ -8,6 +8,25 @@ import {
   HandlerParamsStreaming,
 } from '../types';
 
+async function* toStreamingResponse(
+  response: AsyncIterable<OpenAI.Chat.ChatCompletionChunk>,
+): ResultStreaming {
+  for await (const chunk of response) {
+    yield {
+      choices: chunk.choices.map((openAIChoice) => {
+        return {
+          delta: {
+            content: openAIChoice.delta.content,
+            role: openAIChoice.delta.role,
+          },
+          index: openAIChoice.index,
+          finish_reason: openAIChoice.finish_reason,
+        };
+      }),
+    };
+  }
+}
+
 export async function OpenAIHandler(
   params: HandlerParamsNotStreaming,
 ): Promise<ResultNotStreaming>;
@@ -24,7 +43,14 @@ export async function OpenAIHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const openai = new OpenAI();
-  return openai.chat.completions.create(params) as Promise<
-    ResultNotStreaming | ResultStreaming
-  >; // TODO: Undo the type casting by properly handling and converting to consistent response
+
+  if (params.stream) {
+    const response = await openai.chat.completions.create({
+      ...params,
+      stream: params.stream,
+    });
+    return toStreamingResponse(response);
+  }
+
+  return openai.chat.completions.create({ ...params, stream: false });
 }
