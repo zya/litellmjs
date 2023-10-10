@@ -9,12 +9,22 @@ import {
   HandlerParamsStreaming,
   StreamingChunk,
   Message,
+  FinishReason,
 } from '../types';
 import { combinePrompts } from '../utils/combinePrompts';
+import { getUnixTimestamp } from '../utils/getUnixTimestamp';
 
 function toAnthropicPrompt(messages: Message[]): string {
   const textsCombined = combinePrompts(messages);
   return `${Anthropic.HUMAN_PROMPT} ${textsCombined}${Anthropic.AI_PROMPT}`;
+}
+
+function toFinishReson(string: string): FinishReason {
+  if (string === 'max_tokens') {
+    return 'length';
+  }
+
+  return 'stop';
 }
 
 function toResponse(
@@ -22,13 +32,14 @@ function toResponse(
 ): ResultNotStreaming {
   return {
     model: anthropicResponse.model,
+    created: getUnixTimestamp(),
     choices: [
       {
         message: {
           content: anthropicResponse.completion,
           role: 'assistant',
         },
-        finish_reason: 'stop',
+        finish_reason: toFinishReson(anthropicResponse.stop_reason),
         index: 0,
       },
     ],
@@ -40,10 +51,11 @@ function toStreamingChunk(
 ): StreamingChunk {
   return {
     model: anthropicResponse.model,
+    created: getUnixTimestamp(),
     choices: [
       {
         delta: { content: anthropicResponse.completion, role: 'assistant' },
-        finish_reason: 'stop',
+        finish_reason: toFinishReson(anthropicResponse.stop_reason),
         index: 0,
       },
     ],

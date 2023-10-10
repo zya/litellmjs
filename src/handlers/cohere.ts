@@ -10,6 +10,7 @@ import {
 } from '../types';
 import { cohereResponse, generateResponse } from 'cohere-ai/dist/models';
 import { combinePrompts } from '../utils/combinePrompts';
+import { getUnixTimestamp } from '../utils/getUnixTimestamp';
 
 // eslint-disable-next-line @typescript-eslint/require-await
 async function* toStream(
@@ -18,6 +19,7 @@ async function* toStream(
 ): AsyncIterable<StreamingChunk> {
   yield {
     model: model,
+    created: getUnixTimestamp(),
     choices: [
       {
         delta: {
@@ -64,6 +66,7 @@ export async function CohereHandler(
 
   return {
     model: params.model,
+    created: getUnixTimestamp(),
     choices: [
       {
         message: {

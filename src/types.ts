@@ -1,10 +1,18 @@
+export type Role = 'system' | 'user' | 'assistant' | 'function';
+
 export interface Message {
-  role: 'system' | 'user' | 'assistant' | 'function';
+  role: Role;
   content: string | null;
 }
 
+export type FinishReason =
+  | 'stop'
+  | 'length'
+  | 'function_call'
+  | 'content_filter';
+
 export interface ConsistentResponseChoice {
-  finish_reason: 'stop' | 'length' | 'function_call' | 'content_filter' | null;
+  finish_reason: FinishReason | null;
   index: number;
   message: {
     role: string | null | undefined;

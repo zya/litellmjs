@@ -7,6 +7,7 @@ import {
   StreamingChunk,
 } from '../types';
 import { combinePrompts } from '../utils/combinePrompts';
+import { getUnixTimestamp } from '../utils/getUnixTimestamp';
 
 interface OllamaResponseChunk {
   model: string;
@@ -21,6 +22,7 @@ function toStreamingChunk(
 ): StreamingChunk {
   return {
     model: model,
+    created: getUnixTimestamp(),
     choices: [
       {
         delta: { content: ollamaResponse.response, role: 'assistant' },
@@ -34,6 +36,7 @@ function toStreamingChunk(
 function toResponse(content: string, model: string): ResultNotStreaming {
   return {
     model: model,
+    created: getUnixTimestamp(),
     choices: [
       {
         message: { content, role: 'assistant' },
