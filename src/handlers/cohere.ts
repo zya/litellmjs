@@ -11,15 +11,18 @@ import {
 import { cohereResponse, generateResponse } from 'cohere-ai/dist/models';
 import { combinePrompts } from '../utils/combinePrompts';
 import { getUnixTimestamp } from '../utils/getUnixTimestamp';
+import { toUsage } from '../utils/toUsage';
 
 // eslint-disable-next-line @typescript-eslint/require-await
 async function* toStream(
   response: cohereResponse<generateResponse>,
   model: string,
+  prompt: string,
 ): AsyncIterable<StreamingChunk> {
   yield {
     model: model,
     created: getUnixTimestamp(),
+    usage: toUsage(prompt, response.body.generations[0].text),
     choices: [
       {
         delta: {
@@ -61,12 +64,13 @@ export async function CohereHandler(
   const response = await cohere.generate(config);
 
   if (params.stream) {
-    return toStream(response, params.model);
+    return toStream(response, params.model, textsCombined);
   }
 
   return {
     model: params.model,
     created: getUnixTimestamp(),
+    usage: toUsage(textsCombined, response.body.generations[0].text),
     choices: [
       {
         message: {

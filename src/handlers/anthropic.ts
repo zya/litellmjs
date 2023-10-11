@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+
 const anthropic = new Anthropic();
 
 import {
@@ -13,6 +14,7 @@ import {
 } from '../types';
 import { combinePrompts } from '../utils/combinePrompts';
 import { getUnixTimestamp } from '../utils/getUnixTimestamp';
+import { toUsage } from '../utils/toUsage';
 
 function toAnthropicPrompt(messages: Message[]): string {
   const textsCombined = combinePrompts(messages);
@@ -29,10 +31,12 @@ function toFinishReson(string: string): FinishReason {
 
 function toResponse(
   anthropicResponse: Anthropic.Completion,
+  prompt: string,
 ): ResultNotStreaming {
   return {
     model: anthropicResponse.model,
     created: getUnixTimestamp(),
+    usage: toUsage(prompt, anthropicResponse.completion),
     choices: [
       {
         message: {
@@ -103,5 +107,5 @@ export async function AnthropicHandler(
 
   const completion = await anthropic.completions.create(anthropicParams);
 
-  return toResponse(completion);
+  return toResponse(completion, prompt);
 }

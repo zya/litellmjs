@@ -30,6 +30,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "js-tiktoken": "^1.0.7",
     "openai": "^4.11.1"
   },
   "engines": {

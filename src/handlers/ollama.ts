@@ -8,6 +8,7 @@ import {
 } from '../types';
 import { combinePrompts } from '../utils/combinePrompts';
 import { getUnixTimestamp } from '../utils/getUnixTimestamp';
+import { toUsage } from '../utils/toUsage';
 
 interface OllamaResponseChunk {
   model: string;
@@ -19,10 +20,12 @@ interface OllamaResponseChunk {
 function toStreamingChunk(
   ollamaResponse: OllamaResponseChunk,
   model: string,
+  prompt: string,
 ): StreamingChunk {
   return {
     model: model,
     created: getUnixTimestamp(),
+    usage: toUsage(prompt, ollamaResponse.response),
     choices: [
       {
         delta: { content: ollamaResponse.response, role: 'assistant' },
@@ -33,10 +36,15 @@ function toStreamingChunk(
   };
 }
 
-function toResponse(content: string, model: string): ResultNotStreaming {
+function toResponse(
+  content: string,
+  model: string,
+  prompt: string,
+): ResultNotStreaming {
   return {
     model: model,
     created: getUnixTimestamp(),
+    usage: toUsage(prompt, content),
     choices: [
       {
         message: { content, role: 'assistant' },
@@ -50,6 +58,7 @@ function toResponse(content: string, model: string): ResultNotStreaming {
 async function* iterateResponse(
   response: Response,
   model: string,
+  prompt: string,
 ): AsyncIterable<StreamingChunk> {
   const reader = response.body?.getReader();
   let done = false;
@@ -60,7 +69,7 @@ async function* iterateResponse(
       const decoded = new TextDecoder().decode(next.value);
       done = next.done;
       const ollamaResponse = JSON.parse(decoded) as OllamaResponseChunk;
-      yield toStreamingChunk(ollamaResponse, model);
+      yield toStreamingChunk(ollamaResponse, model, prompt);
     } else {
       done = true;
     }
@@ -107,12 +116,12 @@ export async function OllamaHandler(
   const res = await getOllamaResponse(model, prompt, baseUrl);
 
   if (params.stream) {
-    return iterateResponse(res, model);
+    return iterateResponse(res, model, prompt);
   }
 
   const chunks: StreamingChunk[] = [];
 
-  for await (const chunk of iterateResponse(res, model)) {
+  for await (const chunk of iterateResponse(res, model, prompt)) {
     chunks.push(chunk);
   }
 
@@ -120,5 +129,5 @@ export async function OllamaHandler(
     return (acc += chunk.choices[0].delta.content);
   }, '');
 
-  return toResponse(message, model);
+  return toResponse(message, model, prompt);
 }
