@@ -42,5 +42,7 @@
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "jest.jestCommandLine": "npm run test -- ",
+  "jest.autoRun": "off"
 }

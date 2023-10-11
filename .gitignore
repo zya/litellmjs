@@ -40,3 +40,5 @@ test/*.js
 *.map
 
 dist
+
+.env
