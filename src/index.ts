@@ -16,6 +16,8 @@ export async function completion(
   params: HandlerParamsStreaming,
 ): Promise<ResultStreaming>;
 
+export async function completion(params: HandlerParams): Promise<Result>;
+
 export async function completion(params: HandlerParams): Promise<Result> {
   const handler = getHandler(params.model);
 

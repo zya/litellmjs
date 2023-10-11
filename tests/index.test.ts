@@ -57,7 +57,7 @@ describe('litellm', () => {
       mockCreate.mockResolvedValueOnce({
         completion: 'response text',
       });
-      const result = (await completion(params)) as ResultNotStreaming;
+      const result = await completion(params);
       const expectedParams = {
         model: 'claude-2',
         prompt: expectedPrompt,
