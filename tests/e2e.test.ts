@@ -1,6 +1,7 @@
-import { completion } from '../src';
+import { completion, embedding } from '../src';
 import { ResultStreaming } from '../src/types';
 
+const TIMEOUT = 30000;
 const PROMPT = 'How are you today?';
 const MODELS = [
   {
@@ -13,39 +14,64 @@ const MODELS = [
     model: 'command-nightly',
   },
 ];
+
+const EMBEDDING_MODELS = [
+  {
+    model: 'text-embedding-ada-002',
+  },
+  {
+    model: 'ollama/llama2',
+  },
+];
+
 /**
- * Admin dashboard tests
- *
  * @group e2e
  */
 describe('e2e', () => {
-  it.each(MODELS)(
-    'gets response from supported model $model',
-    async ({ model }) => {
-      jest.setTimeout(10000);
-      const result = await completion({
-        model,
-        messages: [{ role: 'user', content: PROMPT }],
-        stream: false,
-      });
-      expect(result).toBeTruthy();
-      expect(result);
-    },
-  );
+  describe('completion', () => {
+    it.each(MODELS)(
+      'gets response from supported model $model',
+      async ({ model }) => {
+        const result = await completion({
+          model,
+          messages: [{ role: 'user', content: PROMPT }],
+          stream: false,
+        });
+        expect(result).toBeTruthy();
+        expect(result);
+      },
+      TIMEOUT,
+    );
 
-  it.each(MODELS)(
-    'gets streaming response from supported model $model',
-    async ({ model }) => {
-      jest.setTimeout(10000);
-      const result: ResultStreaming = await completion({
-        model,
-        messages: [{ role: 'user', content: PROMPT }],
-        stream: true,
-      });
+    it.each(MODELS)(
+      'gets streaming response from supported model $model',
+      async ({ model }) => {
+        const result: ResultStreaming = await completion({
+          model,
+          messages: [{ role: 'user', content: PROMPT }],
+          stream: true,
+        });
 
-      for await (const chunk of result) {
-        expect(chunk.choices[0].delta.content).not.toBeNull();
-      }
-    },
-  );
+        for await (const chunk of result) {
+          expect(chunk.choices[0].delta.content).not.toBeNull();
+        }
+      },
+      TIMEOUT,
+    );
+  });
+
+  describe('embedding', () => {
+    it.each(EMBEDDING_MODELS)(
+      'returns embedding models for $model',
+      async ({ model }) => {
+        const result = await embedding({
+          model,
+          input: PROMPT,
+        });
+
+        expect(result.data.length).toBeGreaterThan(0);
+      },
+      TIMEOUT,
+    );
+  });
 });

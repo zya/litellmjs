@@ -1,3 +1,5 @@
+import { EmbeddingParams, EmbeddingResponse } from './embedding';
+
 export type Role = 'system' | 'user' | 'assistant' | 'function';
 
 export interface Message {
@@ -66,3 +68,6 @@ export interface HandlerParamsNotStreaming extends HandlerParamsBase {
 export type HandlerParams = HandlerParamsStreaming | HandlerParamsNotStreaming;
 
 export type Handler = (params: HandlerParams) => Promise<Result>;
+export type EmbeddingHandler = (
+  params: EmbeddingParams,
+) => Promise<EmbeddingResponse>;

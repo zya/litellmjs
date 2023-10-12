@@ -1,3 +1,4 @@
+import { MODEL_HANDLER_MAPPINGS } from '../../src/completion';
 import { AnthropicHandler } from '../../src/handlers/anthropic';
 import { CohereHandler } from '../../src/handlers/cohere';
 import { getHandler } from '../../src/handlers/getHandler';
@@ -14,7 +15,7 @@ describe('getHandler', () => {
   ])(
     'should return the correct handler for a given model name',
     ({ model, expectedHandler }) => {
-      const handler = getHandler(model);
+      const handler = getHandler(model, MODEL_HANDLER_MAPPINGS);
       expect(handler).toBe(expectedHandler);
     },
   );

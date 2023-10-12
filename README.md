@@ -35,7 +35,8 @@ for await (const part of stream) {
 # Features
 We aim to support all features that [LiteLLM python package](https://github.com/BerriAI/litellm) supports.
 
-* Standardised completion 🚧
+* Standardised completions
+* Standardised embeddings
 * Caching ❌
 * Proxy ❌
 

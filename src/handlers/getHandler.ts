@@ -1,25 +1,31 @@
-import { Handler } from '../types';
-import { AnthropicHandler } from './anthropic';
-import { CohereHandler } from './cohere';
-import { OllamaHandler } from './ollama';
-import { OpenAIHandler } from './openai';
+import { EmbeddingHandler, Handler } from '../types';
 
-const MODEL_HANDLER_MAPPINGS: Record<string, Handler> = {
-  'claude-2': AnthropicHandler,
-  'gpt-': OpenAIHandler,
-  command: CohereHandler,
-  'ollama/': OllamaHandler,
-};
+export function getHandler(
+  model: string,
+  mapping: Record<string, EmbeddingHandler>,
+): EmbeddingHandler | null;
 
-const PATTERNS = Object.keys(MODEL_HANDLER_MAPPINGS);
+export function getHandler(
+  model: string,
+  mapping: Record<string, Handler>,
+): Handler | null;
 
-export function getHandler(model: string): Handler | null {
-  const handlerKey = PATTERNS.find((pattern) => {
+export function getHandler(
+  model: string,
+  mapping: Record<string, Handler> | Record<string, EmbeddingHandler>,
+): Handler | EmbeddingHandler | null;
+
+export function getHandler(
+  model: string,
+  mapping: Record<string, Handler> | Record<string, EmbeddingHandler>,
+): Handler | EmbeddingHandler | null {
+  const patterns = Object.keys(mapping);
+  const handlerKey = patterns.find((pattern) => {
     const regex = new RegExp(`${pattern}`, 'g');
     return model.match(regex);
   });
   if (!handlerKey) {
     return null;
   }
-  return MODEL_HANDLER_MAPPINGS[handlerKey];
+  return mapping[handlerKey];
 }
