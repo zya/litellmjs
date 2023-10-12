@@ -14,11 +14,9 @@
   "author": "zya",
   "license": "ISC",
   "devDependencies": {
-    "@anthropic-ai/sdk": "^0.6.2",
     "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "chai": "^4.3.10",
-    "cohere-ai": "^6.2.2",
     "dotenv": "^16.3.1",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
@@ -30,12 +28,13 @@
     "jest-runner-groups": "^2.2.0",
     "prettier": "3.0.3",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.2.2",
-    "zod": "^3.22.4"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "js-tiktoken": "^1.0.7",
-    "openai": "^4.11.1"
+    "openai": "^4.11.1",
+    "@anthropic-ai/sdk": "^0.6.2",
+    "cohere-ai": "^6.2.2"
   },
   "engines": {
     "node": ">=18"
