@@ -12,12 +12,14 @@ import { AnthropicHandler } from './handlers/anthropic';
 import { CohereHandler } from './handlers/cohere';
 import { OllamaHandler } from './handlers/ollama';
 import { OpenAIHandler } from './handlers/openai';
+import { AI21Handler } from './handlers/ai21';
 
 export const MODEL_HANDLER_MAPPINGS: Record<string, Handler> = {
   'claude-2': AnthropicHandler,
   'gpt-': OpenAIHandler,
   command: CohereHandler,
   'ollama/': OllamaHandler,
+  'j2-': AI21Handler,
 };
 
 export async function completion(

@@ -13,6 +13,9 @@ const MODELS = [
   {
     model: 'command-nightly',
   },
+  {
+    model: 'j2-light',
+  },
 ];
 
 const EMBEDDING_MODELS = [

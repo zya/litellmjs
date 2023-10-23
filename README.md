@@ -47,13 +47,13 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [cohere](https://docs.litellm.ai/docs/providers/cohere)  | ✅  | ✅  |
 | [anthropic](https://docs.litellm.ai/docs/providers/anthropic)  | ✅ | ✅ |
 | [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ |
+| [ai21](https://docs.litellm.ai/docs/providers/ai21)  | ✅ | ✅ |
 | [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ❌ | ❌ |
 | [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ |
 | [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ |
 | [openrouter](https://docs.litellm.ai/docs/providers/openrouter)  | ❌ | ❌ |
 | [vertex_ai](https://docs.litellm.ai/docs/providers/vertex)  | ❌ | ❌ |
 | [palm](https://docs.litellm.ai/docs/providers/palm)  | ❌ | ❌ |
-| [ai21](https://docs.litellm.ai/docs/providers/ai21)  | ❌ | ❌ |
 | [baseten](https://docs.litellm.ai/docs/providers/baseten)  | ❌ | ❌ |
 | [azure](https://docs.litellm.ai/docs/providers/azure)  | ❌ | ❌ |
 | [sagemaker](https://docs.litellm.ai/docs/providers/aws_sagemaker)  | ❌ | ❌ |

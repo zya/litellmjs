@@ -83,13 +83,12 @@ async function getOllamaResponse(
 ): Promise<Response> {
   return fetch(`${baseUrl}/api/generate`, {
     method: 'POST',
-
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       model,
       prompt,
-      headers: {
-        'Content-Type': 'application/json',
-      },
     }),
   });
 }
