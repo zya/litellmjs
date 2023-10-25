@@ -30,6 +30,12 @@ export async function OllamaEmbeddingHandler(
   const model = params.model.split('ollama/')[1];
   const baseUrl = params.baseUrl ?? 'http://127.0.0.1:11434';
   const response = await getOllamaResponse(model, params.input, baseUrl);
+
+  if (!response.ok) {
+    throw new Error(
+      `Recieved an error with code ${response.status} from Ollama API.`,
+    );
+  }
   const body = (await response.json()) as OllamaEmbeddingsResponseChunk;
 
   return {

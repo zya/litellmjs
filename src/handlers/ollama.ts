@@ -114,6 +114,12 @@ export async function OllamaHandler(
 
   const res = await getOllamaResponse(model, prompt, baseUrl);
 
+  if (!res.ok) {
+    throw new Error(
+      `Recieved an error with code ${res.status} from Ollama API.`,
+    );
+  }
+
   if (params.stream) {
     return iterateResponse(res, model, prompt);
   }
