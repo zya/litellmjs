@@ -3,40 +3,24 @@ import { ResultStreaming } from '../src/types';
 
 const TIMEOUT = 30000;
 const PROMPT = 'How are you today?';
-const MODELS = [
-  {
-    model: 'gpt-3.5-turbo',
-  },
-  {
-    model: 'ollama/llama2',
-  },
-  {
-    model: 'command-nightly',
-  },
-  {
-    model: 'j2-light',
-  },
-];
-
-const EMBEDDING_MODELS = [
-  {
-    model: 'text-embedding-ada-002',
-  },
-  {
-    model: 'ollama/llama2',
-  },
-];
 
 /**
  * @group e2e
  */
 describe('e2e', () => {
   describe('completion', () => {
-    it.each(MODELS)(
+    it.each`
+      model
+      ${'gpt-3.5-turbo'}
+      ${'ollama/llama2'}
+      ${'command-nightly'}
+      ${'j2-light'}
+      ${'replicate/meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3'}
+    `(
       'gets response from supported model $model',
       async ({ model }) => {
         const result = await completion({
-          model,
+          model: model as string,
           messages: [{ role: 'user', content: PROMPT }],
           stream: false,
         });
@@ -46,11 +30,18 @@ describe('e2e', () => {
       TIMEOUT,
     );
 
-    it.each(MODELS)(
+    it.each`
+      model
+      ${'gpt-3.5-turbo'}
+      ${'ollama/llama2'}
+      ${'command-nightly'}
+      ${'j2-light'}
+      ${'replicate/meta/llama-2-7b-chat:ac944f2e49c55c7e965fc3d93ad9a7d9d947866d6793fb849dd6b4747d0c061c'}
+    `(
       'gets streaming response from supported model $model',
       async ({ model }) => {
         const result: ResultStreaming = await completion({
-          model,
+          model: model as string,
           messages: [{ role: 'user', content: PROMPT }],
           stream: true,
         });
@@ -64,11 +55,15 @@ describe('e2e', () => {
   });
 
   describe('embedding', () => {
-    it.each(EMBEDDING_MODELS)(
+    it.each`
+      model
+      ${'text-embedding-ada-002'}
+      ${'ollama/llama2'}
+    `(
       'returns embedding models for $model',
       async ({ model }) => {
         const result = await embedding({
-          model,
+          model: model as string,
           input: PROMPT,
         });
 

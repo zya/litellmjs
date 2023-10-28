@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "scripts": {
     "test": "jest --group=-e2e",
-    "test:e2e": "jest --group=e2e",
+    "test:e2e": "jest --group=e2e --verbose=true",
     "build": "tsc",
     "prebuild": "npm run test",
     "prepublish": "npm run build",
@@ -14,6 +14,7 @@
   "author": "zya",
   "license": "ISC",
   "devDependencies": {
+    "@types/eventsource": "^1.1.14",
     "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "chai": "^4.3.10",
@@ -31,10 +32,12 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.6.2",
+    "cohere-ai": "^6.2.2",
+    "eventsource": "^2.0.2",
     "js-tiktoken": "^1.0.7",
     "openai": "^4.11.1",
-    "@anthropic-ai/sdk": "^0.6.2",
-    "cohere-ai": "^6.2.2"
+    "replicate": "^0.20.1"
   },
   "engines": {
     "node": ">=18"

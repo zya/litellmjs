@@ -5,6 +5,7 @@ import { CohereHandler } from '../../src/handlers/cohere';
 import { getHandler } from '../../src/handlers/getHandler';
 import { OllamaHandler } from '../../src/handlers/ollama';
 import { OpenAIHandler } from '../../src/handlers/openai';
+import { ReplicateHandler } from '../../src/handlers/replicate';
 
 describe('getHandler', () => {
   it.each([
@@ -18,6 +19,7 @@ describe('getHandler', () => {
     { model: 'j2-grande-instruct', expectedHandler: AI21Handler },
     { model: 'j2-mid-instruct', expectedHandler: AI21Handler },
     { model: 'j2-ultra-instruct', expectedHandler: AI21Handler },
+    { model: 'replicate/test/test', expectedHandler: ReplicateHandler },
     { model: 'unknown', expectedHandler: null },
   ])(
     'should return the correct handler for a given model name',
