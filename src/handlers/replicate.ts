@@ -9,6 +9,8 @@ import {
   HandlerParamsStreaming,
 } from '../types';
 import { combinePrompts } from '../utils/combinePrompts';
+import { toUsage } from '../utils/toUsage';
+import { getUnixTimestamp } from '../utils/getUnixTimestamp';
 
 async function sleep(time: number): Promise<unknown> {
   return new Promise((res) => {
@@ -19,6 +21,7 @@ async function sleep(time: number): Promise<unknown> {
 }
 
 async function handleNonStreamingPrediction(
+  prompt: string,
   prediction: Prediction,
   replicate: Replicate,
 ): Promise<ResultNotStreaming> {
@@ -28,6 +31,8 @@ async function handleNonStreamingPrediction(
     '',
   );
   return {
+    usage: toUsage(prompt, output),
+    created: getUnixTimestamp(),
     choices: [
       {
         message: {
@@ -42,6 +47,7 @@ async function handleNonStreamingPrediction(
 }
 
 async function* handleStreamingPrediction(
+  prompt: string,
   prediction: Prediction,
 ): ResultStreaming {
   if (!prediction?.urls?.stream) {
@@ -81,6 +87,8 @@ async function* handleStreamingPrediction(
     // flush the results since last yield
     const combined = results.reduce((acc, curr) => (acc += curr), '');
     yield {
+      created: getUnixTimestamp(),
+      usage: toUsage(prompt, combined),
       choices: [
         {
           delta: {
@@ -128,7 +136,7 @@ export async function ReplicateHandler(
   });
 
   if (params.stream) {
-    return handleStreamingPrediction(prediction);
+    return handleStreamingPrediction(prompt, prediction);
   }
-  return handleNonStreamingPrediction(prediction, replicate);
+  return handleNonStreamingPrediction(prompt, prediction, replicate);
 }
