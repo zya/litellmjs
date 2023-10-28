@@ -1,6 +1,6 @@
 {
   "name": "litellm",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "JS Implementation of LiteLLM",
   "main": "dist/src/index.js",
   "scripts": {
