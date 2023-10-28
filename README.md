@@ -48,7 +48,7 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [anthropic](https://docs.litellm.ai/docs/providers/anthropic)  | ✅ | ✅ |
 | [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ |
 | [ai21](https://docs.litellm.ai/docs/providers/ai21)  | ✅ | ✅ |
-| [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ❌ | ❌ |
+| [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ✅ | ✅ |
 | [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ |
 | [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ |
 | [openrouter](https://docs.litellm.ai/docs/providers/openrouter)  | ❌ | ❌ |
