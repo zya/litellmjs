@@ -1,10 +1,6 @@
 import Replicate, { Prediction } from 'replicate';
 import EventSource from 'eventsource';
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_KEY,
-});
-
 import {
   HandlerParams,
   HandlerParamsNotStreaming,
@@ -24,6 +20,7 @@ async function sleep(time: number): Promise<unknown> {
 
 async function handleNonStreamingPrediction(
   prediction: Prediction,
+  replicate: Replicate,
 ): Promise<ResultNotStreaming> {
   const pred = await replicate.wait(prediction, {});
   const output: string = (pred.output as string[]).reduce(
@@ -115,6 +112,9 @@ export async function ReplicateHandler(
 export async function ReplicateHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
+  const replicate = new Replicate({
+    auth: process.env.REPLICATE_API_KEY,
+  });
   const model = params.model.split('replicate/')[1];
   const version = model.split(':')[1];
 
@@ -130,5 +130,5 @@ export async function ReplicateHandler(
   if (params.stream) {
     return handleStreamingPrediction(prediction);
   }
-  return handleNonStreamingPrediction(prediction);
+  return handleNonStreamingPrediction(prediction, replicate);
 }

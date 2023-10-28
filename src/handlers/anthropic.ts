@@ -1,7 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-const anthropic = new Anthropic();
-
 import {
   HandlerParams,
   HandlerParamsNotStreaming,
@@ -89,6 +87,9 @@ export async function AnthropicHandler(
 export async function AnthropicHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
+  const anthropic = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY,
+  });
   const prompt = toAnthropicPrompt(params.messages);
 
   const anthropicParams = {
