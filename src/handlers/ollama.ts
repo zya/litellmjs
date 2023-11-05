@@ -17,6 +17,53 @@ interface OllamaResponseChunk {
   done: boolean;
 }
 
+function evaluateJsonString(input: string): { remainingText: string; objects: OllamaResponseChunk[] } {
+  let stack = [];
+  let objects = [];
+  let remainingText = input;
+  let inString = false;
+  let currentStringDelimiter = null;
+
+  for (let i = 0; i < input.length; i++) {
+      const char = input[i];
+
+      // Handle string opening/closing
+      if ((char === '"' || char === "'" || char === "`") && (i === 0 || input[i - 1] !== '\\')) {
+          if (!inString) {
+              inString = true;
+              currentStringDelimiter = char;
+          } else if (currentStringDelimiter === char) {
+              inString = false;
+              currentStringDelimiter = null;
+          }
+      }
+
+      // Handle object opening
+      if (!inString && char === '{') {
+          stack.push(i);
+      }
+
+      // Handle object closing
+      if (!inString && char === '}') {
+          let startIdx = stack.pop();
+          if (stack.length === 0) { // We've closed an object
+              let jsonString = input.slice(startIdx, i + 1);
+              try {
+                  objects.push(JSON.parse(jsonString));
+                  remainingText = remainingText.replace(jsonString, '');
+              } catch (e) {
+                  console.error('Invalid JSON object found:', e);
+              }
+          }
+      }
+  }
+
+  // Trim the remainingText to remove any leading/trailing whitespace or commas
+  remainingText = remainingText.trim().replace(/^,|,$/g, '');
+
+  return { remainingText, objects };
+}
+
 function toStreamingChunk(
   ollamaResponse: OllamaResponseChunk,
   model: string,
@@ -63,13 +110,19 @@ async function* iterateResponse(
   const reader = response.body?.getReader();
   let done = false;
 
+  let buffer = "";
   while (!done) {
     const next = await reader?.read();
     if (next?.value) {
       const decoded = new TextDecoder().decode(next.value);
       done = next.done;
-      const ollamaResponse = JSON.parse(decoded) as OllamaResponseChunk;
-      yield toStreamingChunk(ollamaResponse, model, prompt);
+      buffer += decoded;
+      const { remainingText, objects } = evaluateJsonString(buffer);      
+      if(objects.length == 0) continue;
+      buffer = remainingText;
+      for (let index = 0; index < objects.length; index++) {
+        yield toStreamingChunk(objects[index], model, prompt);
+      }
     } else {
       done = true;
     }
