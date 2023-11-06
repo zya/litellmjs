@@ -10,6 +10,7 @@ import { ReplicateHandler } from '../../src/handlers/replicate';
 describe('getHandler', () => {
   it.each([
     { model: 'claude-2', expectedHandler: AnthropicHandler },
+    { model: 'claude-instant-1', expectedHandler: AnthropicHandler },
     { model: 'gpt-3.5-turbo', expectedHandler: OpenAIHandler },
     { model: 'ollama/llama2', expectedHandler: OllamaHandler },
     { model: 'command-nightly', expectedHandler: CohereHandler },
