@@ -16,7 +16,7 @@ import { AI21Handler } from './handlers/ai21';
 import { ReplicateHandler } from './handlers/replicate';
 
 export const MODEL_HANDLER_MAPPINGS: Record<string, Handler> = {
-  'claude-2': AnthropicHandler,
+  'claude-': AnthropicHandler,
   'gpt-': OpenAIHandler,
   command: CohereHandler,
   'ollama/': OllamaHandler,
