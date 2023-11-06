@@ -68,8 +68,14 @@ async function* iterateResponse(
     if (next?.value) {
       const decoded = new TextDecoder().decode(next.value);
       done = next.done;
-      const ollamaResponse = JSON.parse(decoded) as OllamaResponseChunk;
-      yield toStreamingChunk(ollamaResponse, model, prompt);
+      const lines = decoded.split(/(?<!\\)\n/);
+      const ollamaResponses = lines
+        .map((line) => line.trim())
+        .filter((a) => a !== '')
+        .map((line) => JSON.parse(line) as OllamaResponseChunk)
+        .map((response) => toStreamingChunk(response, model, prompt));
+
+      yield* ollamaResponses;
     } else {
       done = true;
     }
