@@ -71,7 +71,7 @@ async function* iterateResponse(
       const lines = decoded.split(/(?<!\\)\n/);
       const ollamaResponses = lines
         .map((line) => line.trim())
-        .filter((a) => a !== '')
+        .filter((line) => line !== '')
         .map((line) => JSON.parse(line) as OllamaResponseChunk)
         .map((response) => toStreamingChunk(response, model, prompt));
 
