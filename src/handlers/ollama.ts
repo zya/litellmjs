@@ -68,20 +68,14 @@ async function* iterateResponse(
     if (next?.value) {
       const decoded = new TextDecoder().decode(next.value);
       done = next.done;
-
-      // Split decoded value by \n characters not wrapped in quotes
       const lines = decoded.split(/(?<!\\)\n/);
-
-      // Remove any leading/trailing whitespace and remove empty lines
-      const cleanedLines = lines
+      const ollamaResponses = lines
         .map((line) => line.trim())
-        .filter((a) => a !== "");
+        .filter((a) => a !== '')
+        .map((line) => JSON.parse(line) as OllamaResponseChunk)
+        .map((response) => toStreamingChunk(response, model, prompt));
 
-      // Parse each line separately
-      const ollamaResponses = cleanedLines.map(line => JSON.parse(line) as OllamaResponseChunk);
-
-      // Yield all the new lines
-      yield* ollamaResponses.map(ollamaResponse => toStreamingChunk(ollamaResponse, model, prompt));
+      yield* ollamaResponses;
     } else {
       done = true;
     }
