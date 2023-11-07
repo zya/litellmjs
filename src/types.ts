@@ -19,12 +19,21 @@ export interface ConsistentResponseChoice {
   message: {
     role: string | null | undefined;
     content: string | null | undefined;
+    function_call?: {
+      arguments: string;
+      name: string;
+    };
   };
 }
 
 export interface ConsistentResponseStreamingChoice
   extends Omit<ConsistentResponseChoice, 'message'> {
-  delta: ConsistentResponseChoice['message'];
+  delta: Omit<ConsistentResponseChoice['message'], 'function_call'> & {
+    function_call?: {
+      arguments?: string;
+      name?: string;
+    };
+  };
 }
 
 export interface ConsistentResponseUsage {

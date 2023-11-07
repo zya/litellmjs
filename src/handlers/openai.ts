@@ -20,6 +20,7 @@ async function* toStreamingResponse(
           delta: {
             content: openAIChoice.delta.content,
             role: openAIChoice.delta.role,
+            function_call: openAIChoice.delta.function_call,
           },
           index: openAIChoice.index,
           finish_reason: openAIChoice.finish_reason,
