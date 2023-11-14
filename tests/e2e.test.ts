@@ -16,6 +16,7 @@ describe('e2e', () => {
       ${'command-nightly'}
       ${'j2-light'}
       ${'replicate/meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3'}
+      ${'deepinfra/mistralai/Mistral-7B-Instruct-v0.1'}
     `(
       'gets response from supported model $model',
       async ({ model }) => {
@@ -37,6 +38,7 @@ describe('e2e', () => {
       ${'command-nightly'}
       ${'j2-light'}
       ${'replicate/meta/llama-2-7b-chat:ac944f2e49c55c7e965fc3d93ad9a7d9d947866d6793fb849dd6b4747d0c061c'}
+      ${'deepinfra/mistralai/Mistral-7B-Instruct-v0.1'}
     `(
       'gets streaming response from supported model $model',
       async ({ model }) => {
