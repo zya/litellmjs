@@ -49,6 +49,7 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ |
 | [ai21](https://docs.litellm.ai/docs/providers/ai21)  | ✅ | ✅ |
 | [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ✅ | ✅ |
+| [deepinfra](https://docs.litellm.ai/docs/providers/deepinfra)  | ✅ | ✅ |
 | [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ |
 | [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ |
 | [openrouter](https://docs.litellm.ai/docs/providers/openrouter)  | ❌ | ❌ |
@@ -62,7 +63,6 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [nlp_cloud](https://docs.litellm.ai/docs/providers/nlp_cloud)  | ❌ | ❌ |
 | [aleph alpha](https://docs.litellm.ai/docs/providers/aleph_alpha)  | ❌ | ❌ |
 | [petals](https://docs.litellm.ai/docs/providers/petals)  | ❌ | ❌ |
-| [deepinfra](https://docs.litellm.ai/docs/providers/deepinfra)  | ❌ | ❌ |
 
 # Development
 
