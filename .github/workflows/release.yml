@@ -1,9 +1,8 @@
 name: Release LiteLLM.js to NPM
-
 on:
   release:
     types:
-      - [published]
+      - published
 jobs:
   release:
     runs-on: ubuntu-latest
