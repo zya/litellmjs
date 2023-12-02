@@ -37,6 +37,7 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 
 * Standardised completions
 * Standardised embeddings
+* Standardised input params 🚧 - List is [here](/docs/input-params.md)
 * Caching ❌
 * Proxy ❌
 
