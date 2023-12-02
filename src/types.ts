@@ -1,3 +1,4 @@
+import { ChatCompletionCreateParams } from 'openai/resources/chat/completions';
 import { EmbeddingParams, EmbeddingResponse } from './embedding';
 
 export type Role = 'system' | 'user' | 'assistant' | 'function';
@@ -64,6 +65,17 @@ export interface HandlerParamsBase {
   messages: Message[];
   stream?: boolean | null;
   baseUrl?: string;
+  temperature?: number | null;
+  top_p?: number | null;
+  stop?: string | null | string[];
+  presence_penalty?: number | null;
+  n?: number | null;
+  max_tokens?: number | null;
+  functions?: ChatCompletionCreateParams.Function[];
+  function_call?:
+    | 'none'
+    | 'auto'
+    | ChatCompletionCreateParams.FunctionCallOption;
 }
 
 export interface HandlerParamsStreaming extends HandlerParamsBase {

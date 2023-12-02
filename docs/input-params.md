@@ -5,14 +5,14 @@ This list is constantly being updated.
 
 | Provider | temperature | max_tokens | top_p | stream | stop | n | presence_penalty | frequency_penalty | functions | function_call |
 |---|---|---|---|---|---|---|---|---|---|---|
-|Anthropic| ❌ | ❌ | ❌ | ❌ | ❌ |  |  |   |  |   |
-|OpenAI| ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-|Replicate | ❌ | ❌ | ❌ | ❌ | ❌ | |  |   |  |   |
+|OpenAI| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+|Anthropic| ❌ | ❌ | ❌ | ✅ | ❌ |  |  |   |  |   |
+|Replicate | ❌ | ❌ | ❌ | ✅ | ❌ | |  |   |  |   |
 |Anyscale | ❌ | ❌ | ❌ | ❌ |
-|Cohere| ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |   |   |
+|Cohere| ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |   |   |
 |Huggingface| ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |  |  |   |    |
 |Openrouter| ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-|AI21| ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |  |   |
+|AI21| ❌ | ❌ | ❌ | ✅| ❌ | ❌ | ❌ | ❌ |  |   |
 |VertexAI| ❌ | ❌ |  | ❌ |  |  |  |  |  |   |
 |Bedrock| ❌ | ❌ | ❌ | ❌ | ❌ |  |  |   |  |   |
 |Sagemaker| ❌ | ❌ |  | ❌ |  |  |  |  |  |   |
@@ -21,4 +21,5 @@ This list is constantly being updated.
 |Palm| ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |  |  |  |   |
 |NLP Cloud| ❌ | ❌ | ❌ | ❌ | ❌ | |  |  |  |   |
 |Petals| ❌ | ❌ |  | ❌ | |  |   |  |  |   |
-|Ollama| ❌ | ❌ | ❌ | ❌ | ❌ |  |   | ❌ |  |   |
+|Ollama| ❌ | ❌ | ❌ | ✅ | ❌ |  |   | ❌ |  |   |
+|DeepInfra| ❌ | ❌ | ❌ | ✅ | ❌ |  |   | ❌ |  |   |
