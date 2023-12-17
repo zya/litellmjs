@@ -51,6 +51,7 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 | [ai21](https://docs.litellm.ai/docs/providers/ai21)  | ✅ | ✅ |
 | [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ✅ | ✅ |
 | [deepinfra](https://docs.litellm.ai/docs/providers/deepinfra)  | ✅ | ✅ |
+| [mistral](https://docs.litellm.ai/docs/providers/mistral)  | ✅ | ✅ |
 | [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ |
 | [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ |
 | [openrouter](https://docs.litellm.ai/docs/providers/openrouter)  | ❌ | ❌ |

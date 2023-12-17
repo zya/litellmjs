@@ -7,6 +7,7 @@ This list is constantly being updated.
 |---|---|---|---|---|---|---|---|---|---|---|
 |OpenAI| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 |Anthropic| ❌ | ❌ | ❌ | ✅ | ❌ |  |  |   |  |   |
+|Mistral| ❌ | ❌ | ❌ | ✅ | ❌ |  |  |   |  |   |
 |Replicate | ❌ | ❌ | ❌ | ✅ | ❌ | |  |   |  |   |
 |Anyscale | ❌ | ❌ | ❌ | ❌ |
 |Cohere| ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |   |   |
