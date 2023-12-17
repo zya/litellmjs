@@ -4,6 +4,7 @@ import { AnthropicHandler } from '../../src/handlers/anthropic';
 import { CohereHandler } from '../../src/handlers/cohere';
 import { DeepInfraHandler } from '../../src/handlers/deepinfra';
 import { getHandler } from '../../src/handlers/getHandler';
+import { MistralHandler } from '../../src/handlers/mistral';
 import { OllamaHandler } from '../../src/handlers/ollama';
 import { OpenAIHandler } from '../../src/handlers/openai';
 import { ReplicateHandler } from '../../src/handlers/replicate';
@@ -23,6 +24,7 @@ describe('getHandler', () => {
     { model: 'j2-ultra-instruct', expectedHandler: AI21Handler },
     { model: 'replicate/test/test', expectedHandler: ReplicateHandler },
     { model: 'deepinfra/test/test', expectedHandler: DeepInfraHandler },
+    { model: 'mistral/mistral-tiny', expectedHandler: MistralHandler },
     { model: 'unknown', expectedHandler: null },
   ])(
     'should return the correct handler for a given model name',
