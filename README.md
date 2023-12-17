@@ -42,29 +42,29 @@ We aim to support all features that [LiteLLM python package](https://github.com/
 * Proxy ❌
 
 ## Supported Providers
-| Provider | Completion | Streaming |
-| ------------- | ------------- | ------------- | 
-| [openai](https://docs.litellm.ai/docs/providers/openai)  | ✅ | ✅  |
-| [cohere](https://docs.litellm.ai/docs/providers/cohere)  | ✅  | ✅  |
-| [anthropic](https://docs.litellm.ai/docs/providers/anthropic)  | ✅ | ✅ |
-| [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ |
-| [ai21](https://docs.litellm.ai/docs/providers/ai21)  | ✅ | ✅ |
-| [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ✅ | ✅ |
-| [deepinfra](https://docs.litellm.ai/docs/providers/deepinfra)  | ✅ | ✅ |
-| [mistral](https://docs.litellm.ai/docs/providers/mistral)  | ✅ | ✅ |
-| [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ |
-| [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ |
-| [openrouter](https://docs.litellm.ai/docs/providers/openrouter)  | ❌ | ❌ |
-| [vertex_ai](https://docs.litellm.ai/docs/providers/vertex)  | ❌ | ❌ |
-| [palm](https://docs.litellm.ai/docs/providers/palm)  | ❌ | ❌ |
-| [baseten](https://docs.litellm.ai/docs/providers/baseten)  | ❌ | ❌ |
-| [azure](https://docs.litellm.ai/docs/providers/azure)  | ❌ | ❌ |
-| [sagemaker](https://docs.litellm.ai/docs/providers/aws_sagemaker)  | ❌ | ❌ |
-| [bedrock](https://docs.litellm.ai/docs/providers/bedrock)  | ❌ | ❌ |
-| [vllm](https://docs.litellm.ai/docs/providers/vllm)  | ❌ | ❌ |
-| [nlp_cloud](https://docs.litellm.ai/docs/providers/nlp_cloud)  | ❌ | ❌ |
-| [aleph alpha](https://docs.litellm.ai/docs/providers/aleph_alpha)  | ❌ | ❌ |
-| [petals](https://docs.litellm.ai/docs/providers/petals)  | ❌ | ❌ |
+| Provider | Completion | Streaming | Embedding
+| ------------- | ------------- | ------------- | ------------- |
+| [openai](https://docs.litellm.ai/docs/providers/openai)  | ✅ | ✅  | ✅ |
+| [cohere](https://docs.litellm.ai/docs/providers/cohere)  | ✅  | ✅  | ❌ |
+| [anthropic](https://docs.litellm.ai/docs/providers/anthropic)  | ✅ | ✅ | ❌ |
+| [ollama](https://docs.litellm.ai/docs/providers/ollama)  | ✅ | ✅ | ✅ |
+| [ai21](https://docs.litellm.ai/docs/providers/ai21)  | ✅ | ✅ | ❌ |
+| [replicate](https://docs.litellm.ai/docs/providers/replicate)  | ✅ | ✅ | ❌ |
+| [deepinfra](https://docs.litellm.ai/docs/providers/deepinfra)  | ✅ | ✅ | ❌ |
+| [mistral](https://docs.litellm.ai/docs/providers/mistral)  | ✅ | ✅ | ✅ |
+| [huggingface](https://docs.litellm.ai/docs/providers/huggingface)  | ❌ | ❌ | ❌ |
+| [together_ai](https://docs.litellm.ai/docs/providers/togetherai)  | ❌ | ❌ | ❌ |
+| [openrouter](https://docs.litellm.ai/docs/providers/openrouter)  | ❌ | ❌ | ❌ |
+| [vertex_ai](https://docs.litellm.ai/docs/providers/vertex)  | ❌ | ❌ | ❌ |
+| [palm](https://docs.litellm.ai/docs/providers/palm)  | ❌ | ❌ | ❌ |
+| [baseten](https://docs.litellm.ai/docs/providers/baseten)  | ❌ | ❌ | ❌ |
+| [azure](https://docs.litellm.ai/docs/providers/azure)  | ❌ | ❌ | ❌ |
+| [sagemaker](https://docs.litellm.ai/docs/providers/aws_sagemaker)  | ❌ | ❌ | ❌ |
+| [bedrock](https://docs.litellm.ai/docs/providers/bedrock)  | ❌ | ❌ | ❌ |
+| [vllm](https://docs.litellm.ai/docs/providers/vllm)  | ❌ | ❌ | ❌ |
+| [nlp_cloud](https://docs.litellm.ai/docs/providers/nlp_cloud)  | ❌ | ❌ | ❌ |
+| [aleph alpha](https://docs.litellm.ai/docs/providers/aleph_alpha)  | ❌ | ❌ | ❌ |
+| [petals](https://docs.litellm.ai/docs/providers/petals)  | ❌ | ❌ | ❌ |
 
 # Development
 

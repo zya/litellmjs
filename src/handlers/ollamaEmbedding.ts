@@ -7,7 +7,7 @@ interface OllamaEmbeddingsResponseChunk {
 
 async function getOllamaResponse(
   model: string,
-  prompt: string,
+  input: string,
   baseUrl: string,
 ): Promise<Response> {
   return fetch(`${baseUrl}/api/embeddings`, {
@@ -15,7 +15,7 @@ async function getOllamaResponse(
 
     body: JSON.stringify({
       model,
-      prompt,
+      prompt: input,
       stream: false,
       headers: {
         'Content-Type': 'application/json',
@@ -29,7 +29,11 @@ export async function OllamaEmbeddingHandler(
 ): Promise<EmbeddingResponse> {
   const model = params.model.split('ollama/')[1];
   const baseUrl = params.baseUrl ?? 'http://127.0.0.1:11434';
-  const response = await getOllamaResponse(model, params.input, baseUrl);
+  const input =
+    typeof params.input === 'string'
+      ? params.input
+      : params.input.reduce((acc, curr) => (acc += curr), '');
+  const response = await getOllamaResponse(model, input, baseUrl);
 
   if (!response.ok) {
     throw new Error(
@@ -41,6 +45,6 @@ export async function OllamaEmbeddingHandler(
   return {
     data: [{ embedding: body.embedding, index: 0 }],
     model: model,
-    usage: toEmbeddingUsage(params.input),
+    usage: toEmbeddingUsage(input),
   };
 }

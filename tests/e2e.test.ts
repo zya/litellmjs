@@ -63,6 +63,7 @@ describe('e2e', () => {
       model
       ${'text-embedding-ada-002'}
       ${'ollama/llama2'}
+      ${'mistral/mistral-embed'}
     `(
       'returns embedding models for $model',
       async ({ model }) => {

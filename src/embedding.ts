@@ -3,9 +3,10 @@ import { getHandler } from './handlers/getHandler';
 import { EmbeddingHandler } from './types';
 import { OpenAIEmbeddingHandler } from './handlers/openaiEmbedding';
 import { OllamaEmbeddingHandler } from './handlers/ollamaEmbedding';
+import { MistralEmbeddingHandler } from './handlers/mistralEmbedding';
 
 export interface EmbeddingParams {
-  input: string;
+  input: string | string[];
   model: string;
   baseUrl?: string;
 }
@@ -24,6 +25,7 @@ export interface EmbeddingResponse {
 const EMBEDDING_MODEL_HANDLER_MAPPINGS: Record<string, EmbeddingHandler> = {
   'text-embedding-': OpenAIEmbeddingHandler,
   'ollama/': OllamaEmbeddingHandler,
+  'mistral/': MistralEmbeddingHandler,
 };
 
 export async function embedding(
