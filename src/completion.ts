@@ -15,6 +15,7 @@ import { OpenAIHandler } from './handlers/openai';
 import { AI21Handler } from './handlers/ai21';
 import { ReplicateHandler } from './handlers/replicate';
 import { DeepInfraHandler } from './handlers/deepinfra';
+import { MistralHandler } from './handlers/mistral';
 
 export const MODEL_HANDLER_MAPPINGS: Record<string, Handler> = {
   'claude-': AnthropicHandler,
@@ -24,6 +25,7 @@ export const MODEL_HANDLER_MAPPINGS: Record<string, Handler> = {
   'j2-': AI21Handler,
   'replicate/': ReplicateHandler,
   'deepinfra/': DeepInfraHandler,
+  'mistral/': MistralHandler,
 };
 
 export async function completion(
