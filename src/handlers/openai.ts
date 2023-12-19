@@ -45,7 +45,11 @@ export async function OpenAIHandler(
 export async function OpenAIHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
-  const openai = new OpenAI();
+  const apiKey = params.api_key ?? process.env.OPENAI_API_KEY;
+
+  const openai = new OpenAI({
+    apiKey: apiKey,
+  });
 
   if (params.stream) {
     const response = await openai.chat.completions.create({
