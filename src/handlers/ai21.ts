@@ -133,7 +133,7 @@ export async function AI21Handler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'https://api.ai21.com';
-  const api_key = params.api_key ?? process.env.AI21_API_KEY!;
+  const apiKey = params. apiKey ?? process.env.AI21_API_KEY!;
   const model = params.model;
   const prompt = combinePrompts(params.messages);
 
