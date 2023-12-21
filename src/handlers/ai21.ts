@@ -107,7 +107,7 @@ async function getAI21Response(
   return fetch(`${baseUrl}/studio/v1/${model}/complete`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${api_key}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
       accept: 'application/json',
     },
