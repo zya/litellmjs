@@ -36,14 +36,14 @@ async function getDeepInfraResponse(
   model: string,
   messages: Message[],
   baseUrl: string,
-  api_key: string,
+  apiKey: string,
   stream: boolean,
 ): Promise<Response> {
   return fetch(`${baseUrl}/v1/openai/chat/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${api_key}`,
+      Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
       messages,
@@ -69,14 +69,14 @@ export async function DeepInfraHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'https://api.deepinfra.com';
-  const api_key = params.api_key ?? process.env.DEEPINFRA_API_KEY!;
+  const apiKey = params. apiKey ?? process.env.DEEPINFRA_API_KEY!;
   const model = params.model.split('deepinfra/')[1];
 
   const res = await getDeepInfraResponse(
     model,
     params.messages,
     baseUrl,
-    api_key,
+    apiKey,
     params.stream ?? false,
   );
 

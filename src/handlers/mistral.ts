@@ -37,14 +37,14 @@ async function getMistralResponse(
   model: string,
   messages: Message[],
   baseUrl: string,
-  api_key: string,
+  apiKey: string,
   stream: boolean,
 ): Promise<Response> {
   return fetch(`${baseUrl}/v1/chat/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${api_key}`,
+      Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
       messages,
@@ -70,14 +70,14 @@ export async function MistralHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'https://api.mistral.ai';
-  const api_key = params.api_key ?? process.env.MISTRAL_API_KEY!;
+  const apiKey = params. apiKey ?? process.env.MISTRAL_API_KEY!;
   const model = params.model.split('mistral/')[1];
 
   const res = await getMistralResponse(
     model,
     params.messages,
     baseUrl,
-    api_key,
+    apiKey,
     params.stream ?? false,
   );
 

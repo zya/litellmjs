@@ -87,10 +87,10 @@ export async function AnthropicHandler(
 export async function AnthropicHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
-  const api_key = params.api_key ?? process.env.ANTHROPIC_API_KEY;
+  const apiKey = params. apiKey ?? process.env.ANTHROPIC_API_KEY;
 
   const anthropic = new Anthropic({
-    apiKey: api_key,
+    apiKey: apiKey,
   });
   const prompt = toAnthropicPrompt(params.messages);
 

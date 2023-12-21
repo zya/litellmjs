@@ -5,13 +5,13 @@ async function getMistralResponse(
   model: string,
   input: EmbeddingParams['input'],
   baseUrl: string,
-  api_key: string,
+  apiKey: string,
 ): Promise<Response> {
   return fetch(`${baseUrl}/v1/embeddings`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${api_key}`,
+      Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
       model,
@@ -25,12 +25,12 @@ export async function MistralEmbeddingHandler(
 ): Promise<EmbeddingResponse> {
   const model = params.model.split('mistral/')[1];
   const baseUrl = params.baseUrl ?? 'https://api.mistral.ai';
-  const api_key = params.api_key ?? process.env.MISTRAL_API_KEY!;
+  const apiKey = params. apiKey ?? process.env.MISTRAL_API_KEY!;
   const response = await getMistralResponse(
     model,
     params.input,
     baseUrl,
-    api_key,
+    apiKey,
   );
 
   if (!response.ok) {

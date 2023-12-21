@@ -51,9 +51,9 @@ export async function CohereHandler(
 export async function CohereHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
-  const api_key = params.api_key ?? process.env.COHERE_API_KEY!;
+  const apiKey = params. apiKey ?? process.env.COHERE_API_KEY!;
 
-  cohere.init(api_key);
+  cohere.init(apiKey);
   const textsCombined = combinePrompts(params.messages);
 
   const config = {
