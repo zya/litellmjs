@@ -8,6 +8,7 @@ import { MistralEmbeddingHandler } from './handlers/mistralEmbedding';
 export interface EmbeddingParams {
   input: string | string[];
   model: string;
+  apiKey?: string;
   baseUrl?: string;
 }
 

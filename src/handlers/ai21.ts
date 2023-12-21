@@ -102,11 +102,12 @@ async function getAI21Response(
   model: string,
   prompt: string,
   baseUrl: string,
+  apiKey: string,
 ): Promise<Response> {
   return fetch(`${baseUrl}/studio/v1/${model}/complete`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.AI21_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
       accept: 'application/json',
     },
@@ -132,10 +133,11 @@ export async function AI21Handler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'https://api.ai21.com';
+  const apiKey = params. apiKey ?? process.env.AI21_API_KEY!;
   const model = params.model;
   const prompt = combinePrompts(params.messages);
 
-  const res = await getAI21Response(model, prompt, baseUrl);
+  const res = await getAI21Response(model, prompt, baseUrl, apiKey);
 
   if (!res.ok) {
     throw new Error(`Recieved an error with code ${res.status} from AI21 API.`);
