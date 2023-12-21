@@ -71,7 +71,7 @@ export interface HandlerParamsBase {
   presence_penalty?: number | null;
   n?: number | null;
   max_tokens?: number | null;
-  api_key?: string;
+  apiKey?: string;
   functions?: ChatCompletionCreateParams.Function[];
   function_call?:
     | 'none'
