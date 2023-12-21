@@ -25,7 +25,7 @@ export async function MistralEmbeddingHandler(
 ): Promise<EmbeddingResponse> {
   const model = params.model.split('mistral/')[1];
   const baseUrl = params.baseUrl ?? 'https://api.mistral.ai';
-  const apiKey = params. apiKey ?? process.env.MISTRAL_API_KEY!;
+  const apiKey = params.apiKey ?? process.env.MISTRAL_API_KEY!;
   const response = await getMistralResponse(
     model,
     params.input,
@@ -35,7 +35,7 @@ export async function MistralEmbeddingHandler(
 
   if (!response.ok) {
     throw new Error(
-      `Recieved an error with code ${response.status} from Mistral API.`,
+      `Received an error with code ${response.status} from Mistral API.`,
     );
   }
   const body = (await response.json()) as CreateEmbeddingResponse;

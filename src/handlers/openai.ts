@@ -45,7 +45,7 @@ export async function OpenAIHandler(
 export async function OpenAIHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
-  const apiKey = params. apiKey ?? process.env.OPENAI_API_KEY;
+  const apiKey = params.apiKey ?? process.env.OPENAI_API_KEY;
 
   const openai = new OpenAI({
     apiKey: apiKey,

@@ -122,7 +122,7 @@ export async function OllamaHandler(
 
   if (!res.ok) {
     throw new Error(
-      `Recieved an error with code ${res.status} from Ollama API.`,
+      `Received an error with code ${res.status} from Ollama API.`,
     );
   }
 

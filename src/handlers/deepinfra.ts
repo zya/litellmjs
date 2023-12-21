@@ -69,7 +69,7 @@ export async function DeepInfraHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'https://api.deepinfra.com';
-  const apiKey = params. apiKey ?? process.env.DEEPINFRA_API_KEY!;
+  const apiKey = params.apiKey ?? process.env.DEEPINFRA_API_KEY!;
   const model = params.model.split('deepinfra/')[1];
 
   const res = await getDeepInfraResponse(

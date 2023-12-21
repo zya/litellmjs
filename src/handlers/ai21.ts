@@ -133,14 +133,14 @@ export async function AI21Handler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'https://api.ai21.com';
-  const apiKey = params. apiKey ?? process.env.AI21_API_KEY!;
+  const apiKey = params.apiKey ?? process.env.AI21_API_KEY!;
   const model = params.model;
   const prompt = combinePrompts(params.messages);
 
   const res = await getAI21Response(model, prompt, baseUrl, apiKey);
 
   if (!res.ok) {
-    throw new Error(`Recieved an error with code ${res.status} from AI21 API.`);
+    throw new Error(`Received an error with code ${res.status} from AI21 API.`);
   }
 
   const body = (await res.json()) as AI21Response;

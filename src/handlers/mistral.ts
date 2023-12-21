@@ -70,7 +70,7 @@ export async function MistralHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const baseUrl = params.baseUrl ?? 'https://api.mistral.ai';
-  const apiKey = params. apiKey ?? process.env.MISTRAL_API_KEY!;
+  const apiKey = params.apiKey ?? process.env.MISTRAL_API_KEY!;
   const model = params.model.split('mistral/')[1];
 
   const res = await getMistralResponse(

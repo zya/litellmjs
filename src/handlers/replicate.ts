@@ -120,7 +120,7 @@ export async function ReplicateHandler(
 export async function ReplicateHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
-  const apiKey = params. apiKey ?? process.env.REPLICATE_API_KEY;
+  const apiKey = params.apiKey ?? process.env.REPLICATE_API_KEY;
   const replicate = new Replicate({
     auth: apiKey,
   });

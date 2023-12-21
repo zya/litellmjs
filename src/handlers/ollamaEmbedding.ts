@@ -37,7 +37,7 @@ export async function OllamaEmbeddingHandler(
 
   if (!response.ok) {
     throw new Error(
-      `Recieved an error with code ${response.status} from Ollama API.`,
+      `Received an error with code ${response.status} from Ollama API.`,
     );
   }
   const body = (await response.json()) as OllamaEmbeddingsResponseChunk;
