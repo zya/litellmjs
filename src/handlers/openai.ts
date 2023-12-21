@@ -48,7 +48,7 @@ export async function OpenAIHandler(
   const api_key = params.api_key ?? process.env.OPENAI_API_KEY;
 
   const openai = new OpenAI({
-    apiKey: api_key,
+    apiKey: apiKey,
   });
 
   if (params.stream) {
