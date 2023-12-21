@@ -7,7 +7,7 @@ export async function OpenAIEmbeddingHandler(
   const api_key = params.api_key ?? process.env.OPENAI_API_KEY;
 
   const openai = new OpenAI({
-    apiKey: api_key,
+    apiKey: apiKey,
   });
   return openai.embeddings.create({ input: params.input, model: params.model });
 }
