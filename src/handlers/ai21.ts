@@ -137,7 +137,7 @@ export async function AI21Handler(
   const model = params.model;
   const prompt = combinePrompts(params.messages);
 
-  const res = await getAI21Response(model, prompt, baseUrl, api_key);
+  const res = await getAI21Response(model, prompt, baseUrl, apiKey);
 
   if (!res.ok) {
     throw new Error(`Recieved an error with code ${res.status} from AI21 API.`);
