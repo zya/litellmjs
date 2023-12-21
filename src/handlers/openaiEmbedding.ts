@@ -4,7 +4,7 @@ import { EmbeddingParams, EmbeddingResponse } from '../embedding';
 export async function OpenAIEmbeddingHandler(
   params: EmbeddingParams,
 ): Promise<EmbeddingResponse> {
-  const api_key = params.api_key ?? process.env.OPENAI_API_KEY;
+  const apiKey = params.apiKey ?? process.env.OPENAI_API_KEY;
 
   const openai = new OpenAI({
     apiKey: apiKey,
