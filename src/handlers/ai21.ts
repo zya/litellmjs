@@ -102,7 +102,7 @@ async function getAI21Response(
   model: string,
   prompt: string,
   baseUrl: string,
-  api_key: string,
+  apiKey: string,
 ): Promise<Response> {
   return fetch(`${baseUrl}/studio/v1/${model}/complete`, {
     method: 'POST',
