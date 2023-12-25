@@ -47,7 +47,7 @@ export async function OpenAIHandler(
 ): Promise<ResultNotStreaming | ResultStreaming> {
   const { apiKey: providedApiKey, baseUrl: providedBaseUrl, ...completionsParams } = params;
   const apiKey = providedApiKey ?? process.env.OPENAI_API_KEY;
-  const baseUrl = providedBaseUrl ?? 'https://api.openai.com';
+  const baseUrl = providedBaseUrl ?? 'https://api.openai.com/v1';
 
   const openai = new OpenAI({
     apiKey: apiKey,
