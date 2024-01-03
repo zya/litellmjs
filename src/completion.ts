@@ -20,6 +20,7 @@ import { MistralHandler } from './handlers/mistral';
 export const MODEL_HANDLER_MAPPINGS: Record<string, Handler> = {
   'claude-': AnthropicHandler,
   'gpt-': OpenAIHandler,
+  'openai/': OpenAIHandler,
   command: CohereHandler,
   'ollama/': OllamaHandler,
   'j2-': AI21Handler,

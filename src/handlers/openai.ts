@@ -45,19 +45,22 @@ export async function OpenAIHandler(
 export async function OpenAIHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
-  const apiKey = params.apiKey ?? process.env.OPENAI_API_KEY;
+  const { apiKey: providedApiKey, baseUrl: providedBaseUrl, ...completionsParams } = params;
+  const apiKey = providedApiKey ?? process.env.OPENAI_API_KEY;
+  const baseUrl = providedBaseUrl ?? 'https://api.openai.com/v1';
 
   const openai = new OpenAI({
     apiKey: apiKey,
+    baseURL: baseUrl,
   });
 
   if (params.stream) {
     const response = await openai.chat.completions.create({
-      ...params,
+      ...completionsParams,
       stream: params.stream,
     });
     return toStreamingResponse(response);
   }
 
-  return openai.chat.completions.create({ ...params, stream: false });
+  return openai.chat.completions.create({ ...completionsParams, stream: false });
 }
