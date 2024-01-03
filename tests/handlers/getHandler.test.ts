@@ -14,6 +14,7 @@ describe('getHandler', () => {
     { model: 'claude-2', expectedHandler: AnthropicHandler },
     { model: 'claude-instant-1', expectedHandler: AnthropicHandler },
     { model: 'gpt-3.5-turbo', expectedHandler: OpenAIHandler },
+    { model: 'openai/test', expectedHandler: OpenAIHandler },
     { model: 'ollama/llama2', expectedHandler: OllamaHandler },
     { model: 'command-nightly', expectedHandler: CohereHandler },
     { model: 'j2-light', expectedHandler: AI21Handler },

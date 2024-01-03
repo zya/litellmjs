@@ -45,7 +45,11 @@ export async function OpenAIHandler(
 export async function OpenAIHandler(
   params: HandlerParams,
 ): Promise<ResultNotStreaming | ResultStreaming> {
-  const { apiKey: providedApiKey, baseUrl: providedBaseUrl, ...completionsParams } = params;
+  const {
+    apiKey: providedApiKey,
+    baseUrl: providedBaseUrl,
+    ...completionsParams
+  } = params;
   const apiKey = providedApiKey ?? process.env.OPENAI_API_KEY;
   const baseUrl = providedBaseUrl ?? 'https://api.openai.com/v1';
 
@@ -62,5 +66,8 @@ export async function OpenAIHandler(
     return toStreamingResponse(response);
   }
 
-  return openai.chat.completions.create({ ...completionsParams, stream: false });
+  return openai.chat.completions.create({
+    ...completionsParams,
+    stream: false,
+  });
 }
