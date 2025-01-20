@@ -98,12 +98,19 @@ export async function AnthropicHandler(
     model: params.model,
     max_tokens_to_sample: 300,
     prompt,
+    temperature: params.temperature ?? undefined,
+  };
+
+  const defaults = {
+    top_k: 10,
+    temperature: 0.2,
   };
 
   if (params.stream) {
     const completionStream = await anthropic.completions.create({
       ...anthropicParams,
       stream: params.stream,
+      ...defaults,
     });
     return toStreamingResponse(completionStream);
   }
