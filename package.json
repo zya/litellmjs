@@ -34,6 +34,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.6.2",
     "cohere-ai": "^6.2.2",
+    "deepl-node": "^1.27.0",
     "eventsource": "^2.0.2",
     "js-tiktoken": "^1.0.7",
     "openai": "^4.11.1",

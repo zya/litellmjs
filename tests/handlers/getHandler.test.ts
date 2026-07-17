@@ -3,6 +3,7 @@ import { AI21Handler } from '../../src/handlers/ai21';
 import { AnthropicHandler } from '../../src/handlers/anthropic';
 import { CohereHandler } from '../../src/handlers/cohere';
 import { DeepInfraHandler } from '../../src/handlers/deepinfra';
+import { DeepLHandler } from '../../src/handlers/deepL';
 import { getHandler } from '../../src/handlers/getHandler';
 import { MistralHandler } from '../../src/handlers/mistral';
 import { OllamaHandler } from '../../src/handlers/ollama';
@@ -26,6 +27,8 @@ describe('getHandler', () => {
     { model: 'replicate/test/test', expectedHandler: ReplicateHandler },
     { model: 'deepinfra/test/test', expectedHandler: DeepInfraHandler },
     { model: 'mistral/mistral-tiny', expectedHandler: MistralHandler },
+    { model: 'deepl/fr', expectedHandler: DeepLHandler },
+    { model: 'deepl/en-US', expectedHandler: DeepLHandler },
     { model: 'unknown', expectedHandler: null },
   ])(
     'should return the correct handler for a given model name',
